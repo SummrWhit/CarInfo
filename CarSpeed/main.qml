@@ -1,0 +1,241 @@
+// file - main.qml
+
+import QtQuick 2.9
+import QtQuick.Window 2.2
+import QtQuick.Controls 2.0
+
+Window {
+    visible: true
+    width: 1040
+    height: 1080
+    title: qsTr("Hello Car")
+
+    Carspeed {
+        id: speed_car
+        x: 100
+        y: 50
+        width: 291
+        height: 238
+        dial_addR: -6
+        dial_longNum: 10
+        dial_longLen: 15
+        dial_lineWidth: 3
+        btm_lineWidth: 22
+        top_lineWidth: 20
+        top_endAngle: DATAMGR.info()*1.3+140
+        top_startAngle: 140
+        btm_endAngle: 400
+        btm_startAngle: 140
+        btm_r: 120
+        top_r: 120
+
+        Label {
+            id: label1
+            x: 9
+            y: 235
+            width: 23
+            height: 25
+            text: qsTr("0")
+            font.weight: Font.Normal
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+        }
+
+        Label {
+            id: label2
+            x: 264
+            y: 235
+            width: 33
+            height: 25
+            text: qsTr("200")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label3
+            x: -27
+            y: 172
+            width: 23
+            height: 25
+            text: qsTr("20")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label4
+            x: 292
+            y: 171
+            width: 42
+            height: 25
+            text: qsTr("180")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label5
+            x: -28
+            y: 99
+            width: 23
+            height: 25
+            text: qsTr("40")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label6
+            x: 302
+            y: 99
+            width: 23
+            height: 25
+            text: qsTr("160")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label7
+            x: -2
+            y: 30
+            width: 23
+            height: 25
+            text: qsTr("60")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label8
+            x: 271
+            y: 30
+            width: 35
+            height: 25
+            text: qsTr("140")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label9
+            x: 62
+            y: -20
+            width: 23
+            height: 25
+            text: qsTr("80")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label10
+            x: 208
+            y: -21
+            width: 36
+            height: 25
+            text: qsTr("120")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Label {
+            id: label11
+            x: 136
+            y: -31
+            width: 23
+            height: 25
+            text: qsTr("100")
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 14
+            font.weight: Font.Normal
+        }
+
+        Text {
+            id: speed
+            x: 104
+            y: 116
+            width: 89
+            height: 44
+            //text: DATAMGR.info()/*slider.value*/
+            style: Text.Normal
+            font.weight: Font.ExtraBold
+            font.capitalization: Font.AllUppercase
+            font.pixelSize: 40
+            font.bold: true
+            font.family: "Verdana"
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Timer {
+            id: timer
+            interval: 1000;
+            running: true;
+            repeat: true
+            onTriggered: {
+                var val = DATAMGR.info()
+                speed.text = val
+                speed_car.top_endAngle = val*1.3+140
+                if(val < 60) {
+                    speed.color = "black"
+                }
+                else if(val<120) {
+                    speed.color = "#f2ac28"
+                }
+                else {
+                    speed.color = "red"
+                }
+                speed_label.color = speed.color
+            }
+        }
+        Component.onCompleted: {
+            timer.start()
+        }
+
+        Label {
+            id: speed_label
+            x: 131
+            y: 154
+            width: 45
+            height: 30
+            text: qsTr("Km/h")
+            font.pointSize: 11
+            font.bold: true
+            verticalAlignment: Text.AlignBottom
+        }
+    }
+
+    Steerwheel {
+        id: steer_car
+        x: 100
+        y: 370
+        width: 291
+        height: 299
+    }
+    /*
+    Switch {
+        id: sth
+        x: 501
+        y: 10
+        text: "Wifi"
+
+        onClicked: {
+            if(sth.position) {
+                speed_car.top_lineWidth = speed_car.btm_lineWidth;
+            } else {
+                speed_car.top_lineWidth = 10
+            }
+        }
+    }
+    */
+}

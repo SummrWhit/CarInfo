@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Carspeed.qml</file>
+        <file>Steerwheel.qml</file>
+        <file>images.jpeg</file>
+    </qresource>
+</RCC>
