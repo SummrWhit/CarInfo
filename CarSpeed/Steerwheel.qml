@@ -12,14 +12,20 @@ Item {
         width: steerWheel.width
         height: steerWheel.height
         source: "images.jpeg"
-        NumberAnimation {
-            running: steer_wheel_logo.visible
-            //loops: Animation.Infinite
-            target: steer_wheel_logo
-            from: 0
-            to: 10
-            property: "rotation"
-            duration: 1000
+        //rotation: 10
+
+        Timer {
+            id: wheel_timer
+            interval: 1000
+            repeat: true
+            running: true
+            onTriggered: {
+                var angel = DATAMGR.getwheelAngel()
+                steer_wheel_logo.rotation = angel
+            }
+        }
+        Component.onCompleted: {
+            wheel_timer.start()
         }
     }
 }

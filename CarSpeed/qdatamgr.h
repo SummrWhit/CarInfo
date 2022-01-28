@@ -8,20 +8,20 @@
 class QDataMgr : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int number READ rtxt WRITE settxt NOTIFY txtchanged)
 public:
     explicit QDataMgr(QObject *parent = nullptr);
-    int rtxt() const {return number;}
-    void settxt(int s) {number = s; emit txtchanged();}
 
 signals:
-    void txtchanged();
 public slots:
     void update();
 public:
-    Q_INVOKABLE int info();
+    Q_INVOKABLE int getSpeed();
+    Q_INVOKABLE int getwheelAngel();
+    Q_INVOKABLE int getAcceleration();
 private:
-    int number;
+    int speed;
+    int angel;
+    int acceleration;
     QTimer *timer;
 };
 #endif // QDATAMGR_H

@@ -53,7 +53,8 @@ Item {
             ctx.lineWidth = carItem.btm_lineWidth;
             ctx.strokeStyle = carItem.btm_backgroundColor;
             ctx.beginPath();
-            ctx.arc(carItem.width/2, carItem.width/2, carItem.btm_r, (carItem.btm_startAngle/180*Math.PI),
+            ctx.arc(carItem.width/2, carItem.width/2, carItem.btm_r,
+                    (carItem.btm_startAngle/180*Math.PI),
                     (carItem.btm_endAngle/180*Math.PI));
             ctx.stroke();
 
@@ -61,21 +62,28 @@ Item {
             ctx.lineWidth = carItem.dial_lineWidth;
             ctx.strokeStyle = carItem.dial_color;
             ctx.beginPath();
-            ctx.arc(carItem.width/2, carItem.width/2, carItem.btm_r+carItem.btm_lineWidth+carItem.dial_addR, (carItem.btm_startAngle/180*Math.PI), (carItem.btm_endAngle/180*Math.PI));
-            var tmp_step = (carItem.btm_endAngle-carItem.btm_startAngle)/carItem.dial_longNum;
-            for(var i=carItem.btm_startAngle;i<carItem.btm_endAngle+tmp_step;i+=tmp_step) {
-                var tmp_x = (carItem.width/2)+(carItem.btm_r+carItem.btm_lineWidth+carItem.dial_addR)*Math.cos(i/180*Math.PI);
-                var tmp_y = (carItem.width/2)+(carItem.btm_r+carItem.btm_lineWidth+carItem.dial_addR)*Math.sin(i/180*Math.PI);
+            ctx.arc(carItem.width/2, carItem.width/2,
+                    carItem.btm_r+carItem.btm_lineWidth+carItem.dial_addR,
+                    (carItem.btm_startAngle/180*Math.PI),
+                    (carItem.btm_endAngle/180*Math.PI));
+            var tmp_step = (carItem.btm_endAngle - carItem.btm_startAngle) / carItem.dial_longNum;
+            for(var i = carItem.btm_startAngle; i < carItem.btm_endAngle + tmp_step; i += tmp_step) {
+                var tmp_x = (carItem.width/2)+
+                        (carItem.btm_r + carItem.btm_lineWidth + carItem.dial_addR) * Math.cos(i/180*Math.PI);
+                var tmp_y = (carItem.width/2) +
+                        (carItem.btm_r + carItem.btm_lineWidth + carItem.dial_addR) * Math.sin(i/180*Math.PI);
                 ctx.moveTo(tmp_x, tmp_y);
                 // 绘制长刻度线
-                ctx.lineTo(tmp_x+carItem.dial_longLen*Math.cos(i/180*Math.PI), tmp_y+(carItem.dial_longLen*Math.sin(i/180*Math.PI)));
+                ctx.lineTo(tmp_x+carItem.dial_longLen*Math.cos(i/180*Math.PI),
+                           tmp_y+(carItem.dial_longLen*Math.sin(i/180*Math.PI)));
             }
             ctx.stroke();
 
             ctx.lineWidth = carItem.top_lineWidth;
             ctx.strokeStyle = carItem.top_backgroundColor;
             ctx.beginPath();
-            ctx.arc(carItem.width/2, carItem.width/2, carItem.top_r, (carItem.top_startAngle/180*Math.PI),
+            ctx.arc(carItem.width/2, carItem.width/2, carItem.top_r,
+                    (carItem.top_startAngle/180*Math.PI),
                     (carItem.top_endAngle/180*Math.PI));
             ctx.stroke();
         }

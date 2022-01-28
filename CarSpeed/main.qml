@@ -9,6 +9,7 @@ Window {
     width: 1040
     height: 1080
     title: qsTr("Hello Car")
+    color: "#F1F3F2"
 
     Carspeed {
         id: speed_car
@@ -22,7 +23,7 @@ Window {
         dial_lineWidth: 3
         btm_lineWidth: 22
         top_lineWidth: 20
-        top_endAngle: DATAMGR.info()*1.3+140
+        top_endAngle: DATAMGR.getSpeed()*1.3+140
         top_startAngle: 140
         btm_endAngle: 400
         btm_startAngle: 140
@@ -167,7 +168,7 @@ Window {
             y: 116
             width: 89
             height: 44
-            //text: DATAMGR.info()/*slider.value*/
+            //text: DATAMGR.getSpeed()/*slider.value*/
             style: Text.Normal
             font.weight: Font.ExtraBold
             font.capitalization: Font.AllUppercase
@@ -179,11 +180,11 @@ Window {
 
         Timer {
             id: timer
-            interval: 1000;
-            running: true;
+            interval: 1000
+            running: true
             repeat: true
             onTriggered: {
-                var val = DATAMGR.info()
+                var val = DATAMGR.getSpeed()
                 speed.text = val
                 speed_car.top_endAngle = val*1.3+140
                 if(val < 60) {
@@ -218,24 +219,51 @@ Window {
     Steerwheel {
         id: steer_car
         x: 100
-        y: 370
+        y: 395
         width: 291
         height: 299
     }
-    /*
-    Switch {
-        id: sth
-        x: 501
-        y: 10
-        text: "Wifi"
 
-        onClicked: {
-            if(sth.position) {
-                speed_car.top_lineWidth = speed_car.btm_lineWidth;
-            } else {
-                speed_car.top_lineWidth = 10
-            }
+    Text {
+        id: acceleration
+        x: 100
+        y: 783
+        width: 291
+        height: 172
+
+        text: "Acceleration(m/s*s)"
+        fontSizeMode: Text.FixedSize
+        bottomPadding: 0
+        padding: 22
+        topPadding: 0
+        rightPadding: 20
+        style: Text.Normal
+        font.weight: Font.Normal
+        font.family: "ubuntu"
+        font.bold: false
+        font.pointSize: 33
+    }
+
+    Text {
+        id: acc_val
+        x: 100
+        y: 876
+        width: 291
+        height: 49
+        //text: qsTr("Text")
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        font.pixelSize: 40
+    }
+
+    Timer {
+        id: acc_timer
+        interval: 1000
+        repeat: true
+        running: true
+        onTriggered: {
+            var acc = DATAMGR.getAcceleration()
+            acc_val.text = acc
         }
     }
-    */
 }
