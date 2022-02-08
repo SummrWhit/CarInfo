@@ -1,4 +1,6 @@
-QT += quick
+QT += quick \
+    core gui
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -13,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
-    qdatamgr.cpp
+    pointcloud.cpp \
+    qmypc.cpp
 
 RESOURCES += qml.qrc
 
@@ -29,6 +32,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    qdatamgr.h
+    qdatamgr.h \
+    pointcloud.h \
+    qmypc.h
+
+INCLUDEPATH += /usr/include/pcl-1.8/ \
+        /usr/local/include/vtk-8.1/ \
+        /usr/include/eigen3/ \
+        /usr/include/boost/
+
+LIBS += /usr/local/lib/libvtk*.so \
+        /usr/lib/x86_64-linux-gnu/libboost_*.so \
+        /usr/lib/x86_64-linux-gnu/libpcl_*.so
 
 DISTFILES +=
