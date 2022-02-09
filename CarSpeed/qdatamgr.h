@@ -22,6 +22,7 @@ private:
     int speed;
     int angel;
     int acceleration;
+    std::vector<int> info;
     QTimer *timer;
 };
 #endif // QDATAMGR_H

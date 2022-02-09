@@ -3,10 +3,12 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.0
+import QtDataVisualization 1.0
+import "."
 
 Window {
     visible: true
-    width: 1040
+    width: 1500
     height: 1080
     title: qsTr("Hello Car")
     color: "#F1F3F2"
@@ -199,9 +201,7 @@ Window {
                 speed_label.color = speed.color
             }
         }
-        Component.onCompleted: {
-            timer.start()
-        }
+
 
         Label {
             id: speed_label
@@ -264,6 +264,100 @@ Window {
         onTriggered: {
             var acc = DATAMGR.getAcceleration()
             acc_val.text = acc
+        }
+    }
+
+    Data {
+        id: seriesData
+    }
+
+    Theme3D {
+        id: themeIsabelle
+        type: Theme3D.ThemeRetro
+        font.family: "Lucida Handwriting"
+        font.pointSize: 80
+    }
+
+    Item {
+        id: dataView
+        x: 600
+        y: 199
+        //anchors.bottom: parent.bottom
+        //! [9]
+        width: 848
+        height: 775
+        //anchors.bottomMargin: 83
+        //! [8]
+
+        //! [2]
+        Scatter3D {
+            id: scatterGraph
+            x: 0
+            y: -24
+            width: 847
+            height: 800
+            //! [2]
+            //! [3]
+            theme: themeIsabelle
+            shadowQuality: AbstractGraph3D.ShadowQualitySoftHigh
+            //! [3]
+            //! [6]
+            //axisX.segmentCount: 3
+            //axisX.subSegmentCount: 2
+            //axisX.labelFormat: "%.2f"
+            //axisZ.segmentCount: 2
+            //axisZ.subSegmentCount: 2
+            //axisZ.labelFormat: "%.2f"
+            //axisY.segmentCount: 2
+            //axisY.subSegmentCount: 2
+            //axisY.labelFormat: "%.2f"
+            //! [6]
+            //! [5]
+            Scatter3DSeries {
+                id: scatterSeries
+                //! [5]
+                //! [10]
+                itemLabelFormat: "Series 1: X:@xLabel Y:@yLabel Z:@zLabel"
+                //! [10]
+
+                //! [11]
+                ItemModelScatterDataProxy {
+                    itemModel: seriesData.model
+                    xPosRole: "xPos"
+                    yPosRole: "yPos"
+                    zPosRole: "zPos"
+                }
+                //! [11]
+            }
+
+            //! [12]
+            Scatter3DSeries {
+                id: scatterSeriesTwo
+                itemLabelFormat: "Series 2: X:@xLabel Y:@yLabel Z:@zLabel"
+                itemSize: 0.1
+                mesh: Abstract3DSeries.MeshCube
+                //! [12]
+
+                ItemModelScatterDataProxy {
+                    itemModel: seriesData.modelTwo
+                    xPosRole: "xPos"
+                    yPosRole: "yPos"
+                    zPosRole: "zPos"
+                }
+            }
+            Scatter3DSeries {
+                id: scatterSeriesThree
+                itemLabelFormat: "Series 3: X:@xLabel Y:@yLabel Z:@zLabel"
+                itemSize: 0.2
+                mesh: Abstract3DSeries.MeshMinimal
+
+                ItemModelScatterDataProxy {
+                    itemModel: seriesData.modelThree
+                    xPosRole: "xPos"
+                    yPosRole: "yPos"
+                    zPosRole: "zPos"
+                }
+            }
         }
     }
 }

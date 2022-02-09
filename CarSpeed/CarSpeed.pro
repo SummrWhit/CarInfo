@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     pointcloud.cpp \
-    qmypc.cpp
+    qmypc.cpp \
+    qdatamgr.cpp \
 
 RESOURCES += qml.qrc
 

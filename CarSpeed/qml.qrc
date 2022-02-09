@@ -4,5 +4,6 @@
         <file>Carspeed.qml</file>
         <file>Steerwheel.qml</file>
         <file>images.jpeg</file>
+        <file>Data.qml</file>
     </qresource>
 </RCC>

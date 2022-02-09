@@ -8,7 +8,7 @@
 #include "pcl/visualization/pcl_visualizer.h"
 #include "pcl/visualization/cloud_viewer.h"
 #include "pcl/console/parse.h"
-#include "pointcloud.h"
+#include "qmypc.h"
 
 int user_data;
 void viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
@@ -42,11 +42,13 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     QDataMgr data_mgr;
     engine.rootContext()->setContextProperty("DATAMGR", &data_mgr);
+    QMyPC point_cloud;
+    engine.rootContext()->setContextProperty("PC", &point_cloud);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 
-    pointcloud pc;
+    //pointcloud pc;
     //pc.show();
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>);
     //QVTKWidget* qvtkWidget;

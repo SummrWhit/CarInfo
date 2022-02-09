@@ -9,12 +9,24 @@
 class QMyPC : public QObject
 {
     Q_OBJECT
+
 public:
     explicit QMyPC(QObject *parent = nullptr);
+
 signals:
+
 public slots:
-    int show();
+    void update();
+
+public:
+    Q_INVOKABLE double getXPos();
+    Q_INVOKABLE double getYPos();
+    Q_INVOKABLE double getZPos();
+
 private:
+    double xPos;
+    double yPos;
+    double zPos;
     QTimer *timer;
 };
 
