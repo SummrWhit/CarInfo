@@ -10,6 +10,7 @@
 #include "pcl/console/parse.h"
 #include "qmypc.h"
 
+
 int user_data;
 void viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
 {

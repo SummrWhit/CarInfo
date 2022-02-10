@@ -1117,13 +1117,13 @@ Item {
     Timer {
         id: pointTimer
         repeat: true
-        interval: 1000
+        interval: 10
         running: true
         onTriggered: {
             //console.log("========")
-            dataModelThree.append({xPos: DATAMGR.getSpeed(),
-                                      yPos: DATAMGR.getwheelAngel(),
-                                      zPos: DATAMGR.getAcceleration()})
+            dataModel.append({xPos: PC.getXPos(),
+                                      yPos: PC.getYPos(),
+                                      zPos: PC.getZPos()})
         }
     }
 }

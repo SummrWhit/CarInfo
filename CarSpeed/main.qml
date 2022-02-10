@@ -299,7 +299,7 @@ Window {
             //! [2]
             //! [3]
             theme: themeIsabelle
-            shadowQuality: AbstractGraph3D.ShadowQualitySoftHigh
+            shadowQuality: AbstractGraph3D.ShadowQualitySoftLow
             //! [3]
             //! [6]
             //axisX.segmentCount: 3

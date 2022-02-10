@@ -17,6 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     qmypc.cpp \
     qdatamgr.cpp \
+    ../../../Project/Test/Student/student.cpp \
+    ../can/canctrl.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,7 +35,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     qdatamgr.h \
-    qmypc.h
+    qmypc.h \
+    ../../../Project/Test/Student/student.h \
+    ../can/canctrl.h
 
 INCLUDEPATH += /usr/include/pcl-1.8/ \
         /usr/local/include/vtk-8.1/ \

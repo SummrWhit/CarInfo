@@ -1,20 +1,15 @@
+#include <string.h>
 #include <stdio.h>
 #include <vector>
-
-short int sign;
-float v_speed, acc, steering;
-
-void sequence();
-void listening();
-void send();
-int socket_up();
-void* thread_rev(void* argr);
-
+#include "can.h"
 
 class canctrlnode
 {
 private:
-
+	float m_speed, m_acc, m_steering;
 public:
-	std::vector<int> candump(const struct can_frame &frame_candump);
+	void setSpeed(float);
+	void setSteering(float);
+	void setAcc(float);
+	void getCanInfo(std::vector<int> &info);
 };
