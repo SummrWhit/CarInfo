@@ -15,9 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
-    qmypc.cpp \
+    #qmypc.cpp \
     qdatamgr.cpp \
-    ../../../Project/Test/Student/student.cpp \
+    #../../../Project/Test/Student/student.cpp \
     ../can/canctrl.cpp
 
 RESOURCES += qml.qrc
@@ -35,17 +35,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     qdatamgr.h \
-    qmypc.h \
-    ../../../Project/Test/Student/student.h \
+    #qmypc.h \
+    #../../../Project/Test/Student/student.h \
     ../can/canctrl.h
 
-INCLUDEPATH += /usr/include/pcl-1.8/ \
-        /usr/local/include/vtk-8.1/ \
-        /usr/include/eigen3/ \
-        /usr/include/boost/
 
-LIBS += /usr/local/lib/libvtk*.so \
-        /usr/lib/x86_64-linux-gnu/libboost_*.so \
-        /usr/lib/x86_64-linux-gnu/libpcl_*.so
 
 DISTFILES +=

@@ -5,9 +5,9 @@
 #include <QQmlContext>
 #include <QObject>
 #include <QTimer>
-#include "../../../../Project/Test/Student/student.h"
+//#include "../../../../Project/Test/Student/student.h"
 #include <vector>
-#include "../../carSpeed/can/canctrl.h"
+#include "../can/canctrl.h"
 
 QDataMgr::QDataMgr(QObject *parent) : QObject(parent)
 {
@@ -37,10 +37,10 @@ void QDataMgr::update() {
     std::vector<int> info;
     can.getCanInfo(info);
     //canctrlnode::getCanInfo(info);
-    qDebug() << "student score = " << Student::getPoints();
-    speed++;// = info[0];
-    angel+=2;// = info[1];
-    acceleration+=3;// = info[2];
+    //qDebug() << "student score = " << Student::getPoints();
+    speed = info[0];
+    angel = info[1];
+    acceleration = info[2];
     qDebug() << "update: " << "speed = " <<
                 speed << ", angel = " << angel << ", acceleration = " << acceleration;
 }
