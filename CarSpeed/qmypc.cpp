@@ -25,13 +25,13 @@ void QMyPC::update() {
 
     timespec_get(&ts, TIME_UTC);
     xPos = ts.tv_nsec % 500;
-    qDebug() << "x = " << xPos;
+    //qDebug() << "x = " << xPos;
     timespec_get(&ts, TIME_UTC);
     yPos = ts.tv_nsec % 500;
-    qDebug() << "y = " << yPos;
+    //qDebug() << "y = " << yPos;
     timespec_get(&ts, TIME_UTC);
     zPos = ts.tv_nsec % 500;
-    qDebug() << "z = " << zPos;
+   // qDebug() << "z = " << zPos;
 }
 
 double QMyPC::getXPos() {

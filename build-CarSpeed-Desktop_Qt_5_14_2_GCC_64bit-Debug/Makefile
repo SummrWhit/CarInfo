@@ -56,14 +56,18 @@ SOURCES       = ../CarSpeed/main.cpp \
 		../CarSpeed/qmypc.cpp \
 		../CarSpeed/qdatamgr.cpp \
 		../../Test/Student/student.cpp \
-		../can/canctrl.cpp qrc_qml.cpp \
+		../../nebula/userapi/Reciever.cpp \
+		../../nebula/userapi/Nebula.cpp \
+		../../nebula/userapi/Emitter.cpp qrc_qml.cpp \
 		moc_qdatamgr.cpp \
 		moc_qmypc.cpp
 OBJECTS       = main.o \
 		qmypc.o \
 		qdatamgr.o \
 		student.o \
-		canctrl.o \
+		Reciever.o \
+		Nebula.o \
+		Emitter.o \
 		qrc_qml.o \
 		moc_qdatamgr.o \
 		moc_qmypc.o
@@ -280,11 +284,13 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../CarSpeed/CarSpeed.pro ../CarSpeed/qdatamgr.h \
 		../CarSpeed/qmypc.h \
 		../../Test/Student/student.h \
-		../can/canctrl.h ../CarSpeed/main.cpp \
+		../../nebula/userapi/Reciever.hpp ../CarSpeed/main.cpp \
 		../CarSpeed/qmypc.cpp \
 		../CarSpeed/qdatamgr.cpp \
 		../../Test/Student/student.cpp \
-		../can/canctrl.cpp
+		../../nebula/userapi/Reciever.cpp \
+		../../nebula/userapi/Nebula.cpp \
+		../../nebula/userapi/Emitter.cpp
 QMAKE_TARGET  = CarSpeed
 DESTDIR       = 
 TARGET        = CarSpeed
@@ -737,8 +743,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../CarSpeed/qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../CarSpeed/qdatamgr.h ../CarSpeed/qmypc.h ../../Test/Student/student.h ../can/canctrl.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../CarSpeed/main.cpp ../CarSpeed/qmypc.cpp ../CarSpeed/qdatamgr.cpp ../../Test/Student/student.cpp ../can/canctrl.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CarSpeed/qdatamgr.h ../CarSpeed/qmypc.h ../../Test/Student/student.h ../../nebula/userapi/Reciever.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../CarSpeed/main.cpp ../CarSpeed/qmypc.cpp ../CarSpeed/qdatamgr.cpp ../../Test/Student/student.cpp ../../nebula/userapi/Reciever.cpp ../../nebula/userapi/Nebula.cpp ../../nebula/userapi/Emitter.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1324,15 +1330,24 @@ qdatamgr.o: ../CarSpeed/qdatamgr.cpp ../CarSpeed/qdatamgr.h \
 		../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore/QDebug \
 		../../Test/Student/student.h \
 		../can/canctrl.h \
-		../can/can.h
+		../can/can.h \
+		../../nebula/userapi/Reciever.hpp \
+		../../nebula/userapi/Nebula.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qdatamgr.o ../CarSpeed/qdatamgr.cpp
 
 student.o: ../../Test/Student/student.cpp ../../Test/Student/student.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o student.o ../../Test/Student/student.cpp
 
-canctrl.o: ../can/canctrl.cpp ../can/can.h \
-		../can/canctrl.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o canctrl.o ../can/canctrl.cpp
+Reciever.o: ../../nebula/userapi/Reciever.cpp ../../nebula/userapi/Reciever.hpp \
+		../../nebula/userapi/Nebula.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Reciever.o ../../nebula/userapi/Reciever.cpp
+
+Nebula.o: ../../nebula/userapi/Nebula.cpp ../../nebula/userapi/Nebula.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Nebula.o ../../nebula/userapi/Nebula.cpp
+
+Emitter.o: ../../nebula/userapi/Emitter.cpp ../../nebula/userapi/Emitter.hpp \
+		../../nebula/userapi/Nebula.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Emitter.o ../../nebula/userapi/Emitter.cpp
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp

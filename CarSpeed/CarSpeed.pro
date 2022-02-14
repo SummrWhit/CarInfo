@@ -18,7 +18,10 @@ SOURCES += main.cpp \
     qmypc.cpp \
     qdatamgr.cpp \
     ../../../Project/Test/Student/student.cpp \
-    ../can/canctrl.cpp
+    ../../../Project/nebula/userapi/Reciever.cpp \
+    ../../../Project/nebula/userapi/Nebula.cpp \
+    ../../../Project/nebula/userapi/Emitter.cpp
+    #../can/canctrl.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,7 +40,8 @@ HEADERS += \
     qdatamgr.h \
     qmypc.h \
     ../../../Project/Test/Student/student.h \
-    ../can/canctrl.h
+    ../../../Project/nebula/userapi/Reciever.hpp
+    #../can/canctrl.h
 
 INCLUDEPATH += /usr/include/pcl-1.8/ \
         /usr/local/include/vtk-8.1/ \

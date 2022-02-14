@@ -8,6 +8,16 @@
 #include "../../../../Project/Test/Student/student.h"
 #include <vector>
 #include "../../carSpeed/can/canctrl.h"
+#include "../../../../Project/nebula/userapi/Reciever.hpp"
+
+using namespace allride_ai_com;
+
+struct car_info {
+    float speed;
+    float acc;
+    float steer;
+};
+int i = 0;
 
 QDataMgr::QDataMgr(QObject *parent) : QObject(parent)
 {
@@ -31,12 +41,21 @@ int QDataMgr::getwheelAngel() {
 int QDataMgr::getAcceleration() {
     return acceleration;
 }
-
+void * callBack(const void* data, int len, unsigned long long timeStamp, void* arg) {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    struct car_info* pdata = (struct car_info*)data;
+    cout <<"timestamp:" << timeStamp<<" delay:("<<(1000000*tv.tv_sec+tv.tv_usec-timeStamp)
+            <<"us) length:("<<len<<"bytes)   data:\n" <<pdata[i++].acc<<"\n"<<endl;
+    return arg;
+}
 void QDataMgr::update() {
-    canctrlnode can;
-    std::vector<int> info;
-    can.getCanInfo(info);
-    //canctrlnode::getCanInfo(info);
+    RecieverPtr recv = new Reciever("whr", 200, callBack);
+    int count = 0;
+    //while (count++ < 10000000)
+    {
+        recv->spin();
+    }
     qDebug() << "student score = " << Student::getPoints();
     speed++;// = info[0];
     angel+=2;// = info[1];

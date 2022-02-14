@@ -9,7 +9,7 @@
 #include "pcl/visualization/cloud_viewer.h"
 #include "pcl/console/parse.h"
 #include "qmypc.h"
-
+#include "../../../../Project/Test/Student/student.h"
 
 int user_data;
 void viewerOneOff (pcl::visualization::PCLVisualizer& viewer)
